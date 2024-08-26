@@ -1,13 +1,14 @@
 using ProjetoFinalBackend.Extensions;
+using ProjetoFinalBackend.Factories;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplicationBuilderFactory.CreateApp(args);
 
 var app = builder.Build();
 
 app.UseCorsAllowAll();
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 
