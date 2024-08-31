@@ -8,8 +8,8 @@ var app = builder.Build();
 app.UseCorsAllowAll();
 app.UseHttpsRedirection();
 
-//app.UseAuthorization();
+app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseSwaggerAllEnvs();
 app.Run();

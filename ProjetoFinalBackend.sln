@@ -11,16 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoFinalBackend.Infra.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoFinalBackend.Infra.IoC", "ProjetoFinalBackend.IoC\ProjetoFinalBackend.Infra.IoC.csproj", "{BE1808CE-46BB-49B5-89F9-86E8572942D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoFinalBackend.Domain", "ProjetoFinalBackend.Domain\ProjetoFinalBackend.Domain.csproj", "{F567A7B8-C29A-463D-93C7-33693E259BF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoFinalBackend.Domain", "ProjetoFinalBackend.Domain\ProjetoFinalBackend.Domain.csproj", "{F567A7B8-C29A-463D-93C7-33693E259BF0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{18823EC0-E380-4F60-A8CC-040DE8BA8C6D}"
-	ProjectSection(SolutionItems) = preProject
-		.gitignore = .gitignore
-	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoFinalBackend.Application.Contracts", "ProjetoFinalBackend.Application.Contracts\ProjetoFinalBackend.Application.Contracts.csproj", "{E140D03B-98F5-491B-82DF-9B6707B5495C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoFinalBackend.Application.Contracts", "ProjetoFinalBackend.Application.Contracts\ProjetoFinalBackend.Application.Contracts.csproj", "{E140D03B-98F5-491B-82DF-9B6707B5495C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoFinalBackend.Infra.EntityFramework", "ProjetoFinalBackend.Infra.EntityFramework\ProjetoFinalBackend.Infra.EntityFramework.csproj", "{088FBA2F-99AA-460B-A79F-EA75FE1441B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoFinalBackend.Infra.EntityFramework", "ProjetoFinalBackend.Infra.EntityFramework\ProjetoFinalBackend.Infra.EntityFramework.csproj", "{088FBA2F-99AA-460B-A79F-EA75FE1441B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
