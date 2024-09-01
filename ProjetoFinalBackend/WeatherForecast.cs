@@ -1,4 +1,4 @@
-namespace ProjetoFinalBackend;
+namespace ProjetoFinalBackend.Api;
 
 public class WeatherForecast
 {

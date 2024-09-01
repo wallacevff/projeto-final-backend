@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace ApiAplicativoDadyilha.Infra.CrossCutting.Providers;
+namespace ProjetoFinalBackend.Infra.CrossCutting.Providers;
 
 public static class CustomConfigurationProvider
 {

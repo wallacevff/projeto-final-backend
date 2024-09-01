@@ -1,4 +1,4 @@
-﻿namespace ProjetoFinalBackend.Factories;
+﻿namespace ProjetoFinalBackend.Api.Factories;
 
 public static class WebApplicationBuilderFactory
 {

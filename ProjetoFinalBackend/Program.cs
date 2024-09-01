@@ -1,5 +1,5 @@
-using ProjetoFinalBackend.Extensions;
-using ProjetoFinalBackend.Factories;
+using ProjetoFinalBackend.Api.Extensions;
+using ProjetoFinalBackend.Api.Factories;
 
 var builder = WebApplicationBuilderFactory.CreateApp(args);
 

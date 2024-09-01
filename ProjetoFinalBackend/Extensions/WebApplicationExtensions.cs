@@ -1,4 +1,4 @@
-﻿namespace ProjetoFinalBackend.Extensions;
+﻿namespace ProjetoFinalBackend.Api.Extensions;
 
 public static class WebApplicationExtensions
 {

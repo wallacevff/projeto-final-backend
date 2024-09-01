@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace ProjetoFinalBackend.IoC;
+namespace ProjetoFinalBackend.Infra.IoC;
 
 public static class IoCManager
 {
     #region "Public Methods"
 
-       
-    
+
+
 
     #endregion
 
