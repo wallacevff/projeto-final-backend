@@ -1,4 +1,4 @@
-﻿namespace ProjetoFinalBackend.Domain.Sistema;
+﻿namespace ProjetoFinalBackend.Domain.SistemaModels;
 
 public class NavbarItem : DefaultEntity<Guid>
 {

@@ -14,10 +14,8 @@ public class ComentarioVideo
     public short Minuto { get; set; }
     public short Segundo { get; set; }
 
-    public record Key(Guid arquivoId, Guid comentarioId);
+    public record Key(Guid ArquivoId, Guid ComentarioId);
 
-    public Key GetKey()
-    {
-        return new Key(ArquivoId, ComentarioId);
-    }
+    public Key GetKey() => new Key(ArquivoId, ComentarioId);
+    
 }

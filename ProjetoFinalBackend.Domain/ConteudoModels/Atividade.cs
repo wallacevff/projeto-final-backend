@@ -28,7 +28,7 @@ public abstract class Atividade
     public virtual DateTime? DeletedAt { get; set; }
 
 
-    public record Key(Guid atividadeId, Guid turmaId);
+    public record Key(Guid AtividadeId, Guid TurmaId);
 
     public Key GetKey()
     {

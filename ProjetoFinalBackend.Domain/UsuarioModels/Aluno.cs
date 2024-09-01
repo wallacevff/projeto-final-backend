@@ -1,6 +1,6 @@
-﻿using ProjetoFinalBackend.Domain.Curso;
+﻿using ProjetoFinalBackend.Domain.CursoModels;
 
-namespace ProjetoFinalBackend.Domain.Usuario;
+namespace ProjetoFinalBackend.Domain.UsuarioModels;
 
 public class Aluno
 {

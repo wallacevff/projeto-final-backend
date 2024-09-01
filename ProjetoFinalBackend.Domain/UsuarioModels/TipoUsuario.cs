@@ -1,6 +1,6 @@
-﻿using ProjetoFinalBackend.Domain.Sistema;
+﻿using ProjetoFinalBackend.Domain.SistemaModels;
 
-namespace ProjetoFinalBackend.Domain.Usuario;
+namespace ProjetoFinalBackend.Domain.UsuarioModels;
 
 public class TipoUsuario : DefaultEntity<int>
 {

@@ -12,10 +12,7 @@ public class AtividadeAluno
     public DateTime? DataEntrega { get; set; }
     public double? Nota { get; set; }
 
-    public record Key(Guid atividadeId, Guid alunoId);
+    public record Key(Guid AtividadeId, Guid AlunoId);
 
-    public Key GetKey()
-    {
-        return new Key(AtividadeId, AlunoId);
-    }
+    public Key GetKey() => new Key(AtividadeId, AlunoId);
 }
