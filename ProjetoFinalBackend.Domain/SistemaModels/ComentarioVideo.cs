@@ -4,9 +4,9 @@ namespace ProjetoFinalBackend.Domain.SistemaModels;
 
 public class ComentarioVideo
 {
-    public string Comentario { get; set; }
+    public string? Comentario { get; set; }
     public Guid ArquivoId { get; set; }
-    public Video Video { get; set; } = new Video();
+    public Video? Video { get; set; }
     public Guid ComentarioId { get; set; }
     public Guid UsuarioId { get; set; }
     public UsuarioModels.Usuario? Usuario { get; set; }

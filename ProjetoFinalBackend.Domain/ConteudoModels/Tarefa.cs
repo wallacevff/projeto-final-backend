@@ -1,6 +1,4 @@
-﻿using ProjetoFinalBackend.Domain.SistemaModels.ArquivoModels;
-
-namespace ProjetoFinalBackend.Domain.ConteudoModels;
+﻿namespace ProjetoFinalBackend.Domain.ConteudoModels;
 
 public class Tarefa : Atividade
 {

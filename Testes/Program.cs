@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using ProjetoFinalBackend.Domain.SistemaModels;
+using ProjetoFinalBackend.Domain.UsuarioModels;
 
-Console.WriteLine(Modalidade.Turmas.Equals("Turmas"));
+Console.WriteLine(nameof(Usuario));

@@ -10,8 +10,8 @@ public class Forum
     public Guid TurmaId { get; set; }
     public Guid ForumId { get; set; }
     
-    public string Titulo { get; set; }
-    public Usuario Criador { get; set; }
+    public string Titulo { get; set; } = string.Empty;
+    public Usuario? Criador { get; set; }
     public IList<Postagem>? Postagens { get; set; } //Dono de Postagens
     
     public Turma? Turma { get; set; }
@@ -21,7 +21,7 @@ public class Forum
         get => _createdAt; set => _createdAt = value;
     }
 
-    public override DateTime CreatedAt
+    public DateTime CreatedAt
     {
         get => _createdAt;
         set => _createdAt = value;

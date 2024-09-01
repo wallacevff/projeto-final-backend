@@ -1,6 +1,6 @@
 ﻿namespace ProjetoFinalBackend.Infra.EntityFramework;
 
-public class Class1
+public interface IEntityMap
 {
-
+    
 }

@@ -14,7 +14,7 @@ public class Postagem
     public string Titulo { get; set; } = string.Empty;
     public string Conteudo { get; set; } = string.Empty;
     public Guid UsuarioId { get; set; }
-    public Usuario Autor { get; set; }
+    public Usuario? Autor { get; set; }
     public IList<Arquivo>? Arquivos { get; set; }
 
     public DateTime DataCriacao

@@ -6,12 +6,12 @@ namespace ProjetoFinalBackend.Domain.ConteudoModels;
 public abstract class Atividade
 {
     public Guid AtividadeId { get; set; }
-    public string Titulo { get; set; } = string.Empty;
-    public string Descricao { get; set; } = string.Empty;
+    public required string Titulo { get; set; }
+    public required string Descricao { get; set; }
     public Guid TurmaId { get; set; }
     public Turma? Turma { get; set; }
     public IList<Arquivo>? Anexos { get; set; }
-    private DateTime _createdAt = DateTime.Now();
+    private DateTime _createdAt;
     public DateTime DataCriacao
     {
         get => _createdAt;
