@@ -9,13 +9,15 @@ public class Forum
     private DateTime _createdAt = DateTime.Now;
 
     public Guid TurmaId { get; set; }
+    public Guid CursoId { get; set; }
     public Guid ForumId { get; set; }
-    
+
     public string Titulo { get; set; } = string.Empty;
     public Guid UsuarioId { get; set; }
     public Usuario? Criador { get; set; }
     public IList<Postagem>? Postagens { get; set; } //Dono de Postagens
-    
+
+    public Curso? Curso { get; set; }
     public Turma? Turma { get; set; }
 
     public DateTime DataCriacao

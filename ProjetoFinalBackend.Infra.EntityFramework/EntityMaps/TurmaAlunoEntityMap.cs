@@ -9,7 +9,7 @@ public class TurmaAlunoEntityMap : IEntityTypeConfiguration<TurmaAluno>, IEntity
     public void Configure(EntityTypeBuilder<TurmaAluno> builder)
     {
         builder.ToTable(nameof(TurmaAluno));
-        builder.HasKey(t => new {t.TurmaId, t.AlunoId});
+        builder.HasKey(t => new {t.CursoId, t.TurmaId, t.AlunoId});
         builder.Property(t => t.TurmaId);
         builder.Property(t => t.AlunoId);
         builder.Property(t => t.CursoId);
@@ -18,6 +18,6 @@ public class TurmaAlunoEntityMap : IEntityTypeConfiguration<TurmaAluno>, IEntity
             .WithMany(a => a.Turmas)
             .HasForeignKey(a => a.AlunoId);
         builder.HasOne(t => t.Turma)
-            .WithMany().HasForeignKey(t => t.TurmaId);
+            .WithMany().HasForeignKey(t => new {t.CursoId, t.TurmaId});
     }
 }

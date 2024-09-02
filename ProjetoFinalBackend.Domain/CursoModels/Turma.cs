@@ -4,12 +4,15 @@ using ProjetoFinalBackend.Domain.UsuarioModels;
 
 namespace ProjetoFinalBackend.Domain.CursoModels;
 
-public class Turma : DefaultEntity<Guid>
+public class Turma
 {
+    public Guid TurmaId { get; set; }
+    public Guid CursoId { get; set; }
+    public required string Nome { get; set; }
     public short Numero { get; set; }
     public short Tamanho { get; set; }
     public short QtdAlunos { get; set; } //Ignorar no Database
-    public Guid CursoId { get; set; }
+    
     public Curso? Curso { get; set; }
     public IList<Atividade>? Atividades { get; set; }
     public IList<Forum>? Forums { get; set; } //Dono de Foruns

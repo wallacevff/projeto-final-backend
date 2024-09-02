@@ -9,11 +9,11 @@ public class AtividadeAlunoEntityMap : IEntityTypeConfiguration<AtividadeAluno>,
     public void Configure(EntityTypeBuilder<AtividadeAluno> builder)
     {
         builder.ToTable(nameof(AtividadeAluno));
-        builder.HasKey(aa => new { aa.TurmaId, aa.AtividadeId, aa.AlunoId });
+        builder.HasKey(aa => new { aa.CursoId, aa.TurmaId, aa.AtividadeId, aa.AlunoId });
         builder.Property(aa => aa.AlunoId);
         builder.Property(aa => aa.AtividadeId);
         builder.Property(aa => aa.TurmaId);
         builder.HasOne(aa => aa.Aluno).WithMany().HasForeignKey(aa => aa.AlunoId);
-        builder.HasOne(aa => aa.Atividade).WithMany().HasForeignKey(aa => new {aa.TurmaId, aa.AtividadeId});
+        builder.HasOne(aa => aa.Atividade).WithMany().HasForeignKey(aa => new {aa.CursoId, aa.TurmaId, aa.AtividadeId});
     }
 }

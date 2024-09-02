@@ -20,12 +20,13 @@ public partial class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //base.OnModelCreating(modelBuilder);
+
         modelBuilder.ApplyConfigurationsFromAssembly(
             typeof(IProjetoFinalInfraEntityFramework).Assembly,
             type => type.GetInterfaces().Any(t => t == typeof(IEntityMap))
         );
-        
+        base.OnModelCreating(modelBuilder);
+
         //
     }
 }

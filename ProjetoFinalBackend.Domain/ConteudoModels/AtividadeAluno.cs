@@ -4,6 +4,7 @@ namespace ProjetoFinalBackend.Domain.ConteudoModels;
 
 public class AtividadeAluno
 {
+    public Guid CursoId { get; set; }
     public Guid TurmaId { get; set; }
     public Guid AtividadeId { get; set; }
     public Atividade? Atividade { get; set; }

@@ -19,6 +19,7 @@ public partial class AppDbContext
     public DbSet<Turma> Turmas { get; set; }
     public DbSet<TurmaAluno> TurmasAlunos { get; set; }
     public DbSet<Imagem> Imagens { get; set; }
+    public DbSet<Postagem> Postagens { get; set; }
     public DbSet<Video> Videos { get; set; }
     //public DbSet<Usuario> Usuarios { get; set; }
     //public DbSet<Usuario> Usuarios { get; set; }

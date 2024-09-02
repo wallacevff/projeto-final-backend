@@ -9,6 +9,8 @@ public abstract class Atividade
     public Guid AtividadeId { get; set; }
     public required string Titulo { get; set; }
     public required string Descricao { get; set; }
+    public Guid CursoId { get; set; }
+    public Curso? Curso { get; set; }
     public Guid TurmaId { get; set; }
     public Turma? Turma { get; set; }
     public IList<Arquivo>? Anexos { get; set; }
