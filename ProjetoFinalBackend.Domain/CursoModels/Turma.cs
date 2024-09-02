@@ -13,5 +13,5 @@ public class Turma : DefaultEntity<Guid>
     public Curso? Curso { get; set; }
     public IList<Atividade>? Atividades { get; set; }
     public IList<Forum>? Forums { get; set; } //Dono de Foruns
-    public IList<Aluno>? Alunos { get; set; } //Contém Alunos
+    public IList<TurmaAluno>? Alunos { get; set; } //Contém Alunos
 }

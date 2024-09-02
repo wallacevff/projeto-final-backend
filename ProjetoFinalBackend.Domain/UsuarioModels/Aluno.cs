@@ -2,7 +2,7 @@
 
 namespace ProjetoFinalBackend.Domain.UsuarioModels;
 
-public class Aluno
+public class Aluno : Usuario
 {
-    public IList<Turma> Turmas { get; set; } = new List<Turma>(); //Está inscrito em turmas>
+    public IList<TurmaAluno>? Turmas { get; set; } //Está inscrito em turmas>
 }

@@ -16,6 +16,10 @@ public partial class AppDbContext
     public DbSet<Arquivo> Arquivos { get; set; }
     public DbSet<Curso> Cursos { get; set; }
     public DbSet<Forum> Forums { get; set; }
+    public DbSet<Turma> Turmas { get; set; }
+    public DbSet<TurmaAluno> TurmasAlunos { get; set; }
+    public DbSet<Imagem> Imagens { get; set; }
+    public DbSet<Video> Videos { get; set; }
     //public DbSet<Usuario> Usuarios { get; set; }
     //public DbSet<Usuario> Usuarios { get; set; }
     //public DbSet<Usuario> Usuarios { get; set; }

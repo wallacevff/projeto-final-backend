@@ -1,4 +1,5 @@
 ﻿using ProjetoFinalBackend.Domain.CursoModels;
+using ProjetoFinalBackend.Domain.SistemaModels;
 using ProjetoFinalBackend.Domain.SistemaModels.ArquivoModels;
 
 namespace ProjetoFinalBackend.Domain.ConteudoModels;
@@ -11,6 +12,7 @@ public abstract class Atividade
     public Guid TurmaId { get; set; }
     public Turma? Turma { get; set; }
     public IList<Arquivo>? Anexos { get; set; }
+    public TipoAtividade TipoAtividade  { get; set; }
     private DateTime _createdAt;
     public DateTime DataCriacao
     {

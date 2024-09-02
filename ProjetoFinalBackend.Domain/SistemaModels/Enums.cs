@@ -19,3 +19,9 @@ public enum TipoAtividade
     Tarefa = 1,
 }
 
+public enum TipoUsuarioEnum
+{
+    Professor = 1,
+    Aluno = 2,
+}
+

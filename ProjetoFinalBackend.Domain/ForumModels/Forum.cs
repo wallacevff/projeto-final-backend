@@ -1,4 +1,5 @@
-﻿using ProjetoFinalBackend.Domain.CursoModels;
+﻿using System.Globalization;
+using ProjetoFinalBackend.Domain.CursoModels;
 using ProjetoFinalBackend.Domain.UsuarioModels;
 
 namespace ProjetoFinalBackend.Domain.ForumModels;
@@ -11,6 +12,7 @@ public class Forum
     public Guid ForumId { get; set; }
     
     public string Titulo { get; set; } = string.Empty;
+    public Guid UsuarioId { get; set; }
     public Usuario? Criador { get; set; }
     public IList<Postagem>? Postagens { get; set; } //Dono de Postagens
     
@@ -25,5 +27,12 @@ public class Forum
     {
         get => _createdAt;
         set => _createdAt = value;
+    }
+
+    public record Key(Guid TurmaId, Guid ForumId);
+
+    public Key GetKey()
+    {
+        return new Key(TurmaId, ForumId);
     }
 }

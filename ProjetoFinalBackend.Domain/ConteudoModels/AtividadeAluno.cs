@@ -4,6 +4,7 @@ namespace ProjetoFinalBackend.Domain.ConteudoModels;
 
 public class AtividadeAluno
 {
+    public Guid TurmaId { get; set; }
     public Guid AtividadeId { get; set; }
     public Atividade? Atividade { get; set; }
     public Guid AlunoId { get; set; }
@@ -11,8 +12,4 @@ public class AtividadeAluno
     public bool Concluida { get; set; } = false;
     public DateTime? DataEntrega { get; set; }
     public double? Nota { get; set; }
-
-    public record Key(Guid AtividadeId, Guid AlunoId);
-
-    public Key GetKey() => new Key(AtividadeId, AlunoId);
 }

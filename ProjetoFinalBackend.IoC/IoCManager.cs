@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using ProjetoFinalBackend.Infra.EntityFramework;
 using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
 
 namespace ProjetoFinalBackend.Infra.IoC;
@@ -11,7 +12,7 @@ public static class IoCManager
     public static IServiceCollection AddDatabase(this IServiceCollection services)
     {
         services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlite("Data Source=db.db")
+            options.UseSqlite("Data Source=db.db", b => b.MigrationsAssembly("ProjetoFinalBackend.Api"))
         );
         return services;
     }

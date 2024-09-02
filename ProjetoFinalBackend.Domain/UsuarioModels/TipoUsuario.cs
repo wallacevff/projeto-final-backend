@@ -2,7 +2,7 @@
 
 namespace ProjetoFinalBackend.Domain.UsuarioModels;
 
-public class TipoUsuario : DefaultEntity<int>
+public class TipoUsuario : DefaultEntity<TipoUsuarioEnum>
 {
     public IList<NavbarItem> Navbar { get; set; } = new List<NavbarItem>(); //Dono
 }
