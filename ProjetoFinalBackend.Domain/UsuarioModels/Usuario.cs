@@ -3,7 +3,7 @@ using ProjetoFinalBackend.Domain.SistemaModels.ArquivoModels;
 
 namespace ProjetoFinalBackend.Domain.UsuarioModels;
 
-public abstract class Usuario : DefaultEntity<Guid>
+public class Usuario : DefaultEntity<Guid>
 {
 
     public string Email { get; set; } = string.Empty;

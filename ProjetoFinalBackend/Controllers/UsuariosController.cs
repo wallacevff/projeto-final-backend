@@ -4,21 +4,24 @@ using ProjetoFinalBackend.Domain.CursoModels;
 using ProjetoFinalBackend.Domain.SistemaModels;
 using ProjetoFinalBackend.Domain.UsuarioModels;
 using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
+using ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
 namespace ProjetoFinalBackend.Api.Controllers;
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class UsuariosController : ControllerBase
 {
  
-    private readonly ILogger<WeatherForecastController> _logger;
+    private readonly ILogger<UsuariosController> _logger;
     private readonly AppDbContext _appDbContext;
+    private readonly UsuarioRepository _usuarioRepository;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger
-    , AppDbContext context)
+    public UsuariosController(ILogger<UsuariosController> logger
+    , AppDbContext context, UsuarioRepository usuarioRepository)
     {
         _logger = logger;
         _appDbContext = context;
+        _usuarioRepository = usuarioRepository;
     }
 
     [HttpGet]
@@ -34,5 +37,13 @@ public class WeatherForecastController : ControllerBase
          var a = (Aluno)_appDbContext.Usuarios.Add(aluno).Entity;
          _appDbContext.SaveChanges();
          return a;
+    }
+
+    [HttpPost("Criar")]
+    public async Task<Usuario?> Criar([FromBody] Usuario usuario)
+    {
+        var usuarioCriado = await _usuarioRepository.CreateUser(usuario);
+        await _appDbContext.SaveChangesAsync();
+        return usuarioCriado;
     }
 }

@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using ProjetoFinalBackend.Domain.SistemaModels;
-using ProjetoFinalBackend.Domain.UsuarioModels;
+using Testes;
 
-Console.WriteLine(nameof(Usuario));
+var newOperation = new MinhaOperacao();
+var meuValor = 1;
+var b = newOperation.GetT(meuValor);
+Console.WriteLine(b);

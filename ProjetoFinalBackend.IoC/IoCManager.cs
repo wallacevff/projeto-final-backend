@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using ProjetoFinalBackend.Infra.EntityFramework;
 using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
+using ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
 namespace ProjetoFinalBackend.Infra.IoC;
 
@@ -17,6 +18,12 @@ public static class IoCManager
         return services;
     }
 
+    public static IServiceCollection AddAllRepositories(this IServiceCollection services)
+    {
+        services.AddScoped<UsuarioRepository>();
+
+        return services;
+    }
 
     #endregion
 

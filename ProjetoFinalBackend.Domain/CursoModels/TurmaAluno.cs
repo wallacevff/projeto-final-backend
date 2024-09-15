@@ -10,4 +10,9 @@ public class TurmaAluno
     public Curso? Curso { get; set; }
     public Turma? Turma { get; set; }
     public Aluno? Aluno { get; set; }
+
+    public int QuantidadeTarefasAtribuidas { get; set; }
+    public int QuantidadeTarefasRealizadas { get; set; }
+    public double PercentualConcluido { get; set; }
+
 }

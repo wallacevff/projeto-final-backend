@@ -1,0 +1,12 @@
+
+
+dotnet ef --project ProjetoFinalBackend.Api migrations add InitialMigration --context CrachaPlusDbContext
+
+**Update Database**
+
+dotnet ef --project CrachaPus.Infra.EntityFrameworkCore database update
+ --project CrachaPus.Infra.EntityFrameworkCore migrations add InitialMigration --context CrachaPlusDbContext
+
+**Update Database**
+
+dotnet ef --project CrachaPus.Infra.EntityFrameworkCore database update

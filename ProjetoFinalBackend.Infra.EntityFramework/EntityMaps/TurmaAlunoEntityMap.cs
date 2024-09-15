@@ -10,6 +10,9 @@ public class TurmaAlunoEntityMap : IEntityTypeConfiguration<TurmaAluno>, IEntity
     {
         builder.ToTable(nameof(TurmaAluno));
         builder.HasKey(t => new {t.CursoId, t.TurmaId, t.AlunoId});
+        builder.Ignore(t => t.QuantidadeTarefasAtribuidas);
+        builder.Ignore(t => t.QuantidadeTarefasRealizadas);
+        builder.Ignore(t => t.PercentualConcluido);
         builder.Property(t => t.TurmaId);
         builder.Property(t => t.AlunoId);
         builder.Property(t => t.CursoId);
