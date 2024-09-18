@@ -13,14 +13,14 @@ public static class IoCManager
     public static IServiceCollection AddDatabase(this IServiceCollection services)
     {
         services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlite("Data Source=db.db", b => b.MigrationsAssembly("ProjetoFinalBackend.Api"))
+            options.UseSqlite("Data Source=db.db")
         );
         return services;
     }
 
     public static IServiceCollection AddAllRepositories(this IServiceCollection services)
     {
-        services.AddScoped<UsuarioRepository>();
+        //services.AddScoped<UsuarioRepository>();
 
         return services;
     }

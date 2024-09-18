@@ -11,13 +11,17 @@ public class UsuarioEntityMap : IEntityTypeConfiguration<Usuario>, IEntityMap
     {
         builder.ToTable(nameof(Usuario));
         builder.HasKey(u => u.Id);
-        Properties(builder);
-        builder.HasDiscriminator(u => u.TipoUsuarioId)
+        builder.HasDiscriminator(u => u.TipoUsuarioCod)
             .HasValue<Professor>(TipoUsuarioEnum.Professor)
             .HasValue<Aluno>(TipoUsuarioEnum.Aluno);
+
+        Properties(builder);
+
+        
+        
         builder.HasOne(u => u.TipoUsuario)
             .WithMany()
-            .HasForeignKey(u => u.TipoUsuarioId);
+            .HasForeignKey(u => u.TipoUsuarioCod);
         builder.HasOne(u => u.Imagem).WithOne();
 
     }
@@ -32,6 +36,7 @@ public class UsuarioEntityMap : IEntityTypeConfiguration<Usuario>, IEntityMap
         builder.Property(u => u.CreatedAt);
         builder.Property(u => u.UpdatedAt);
         builder.Property(u => u.DeletedAt);
+        //builder.Property(u => u.TipoUsuarioCod);
 
         return builder;
     }

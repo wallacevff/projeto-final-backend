@@ -5,7 +5,7 @@ using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
 
 namespace ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
-public class DefaultRepository<TEntity> : IDefaultRepository<TEntity> where TEntity: class, new()
+public class DefaultRepository<TEntity> : IDefaultRepository<TEntity> where TEntity: class
 {
     protected readonly DbSet<TEntity> _dbSet;
     protected readonly AppDbContext _appDbContext;

@@ -1,6 +1,11 @@
+#Add-Migration
+Powershell:
+dotnet ef -s ProjetoFinalBackend  --project ProjetoFinalBackend.Infra.EntityFramework  migrations add InitialMigration
+PM:
+Add-Migration InitialMigration
 
 
-dotnet ef --project ProjetoFinalBackend.Api migrations add InitialMigration --context CrachaPlusDbContext
+Get-Help about_EntityFrameworkCore
 
 **Update Database**
 
