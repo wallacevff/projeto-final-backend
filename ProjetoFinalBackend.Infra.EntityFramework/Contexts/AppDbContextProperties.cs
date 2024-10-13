@@ -11,6 +11,8 @@ public partial class AppDbContext
 {
     public DbSet<TipoUsuario> TiposUsuario { get; set; }
     public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Aluno> Alunos { get; set; }
+    public DbSet<Professor> Professores { get; set; }
     public DbSet<Atividade> Atividades { get; set; }
     public DbSet<AtividadeAluno> AtividadesAluno { get; set; }
     public DbSet<Arquivo> Arquivos { get; set; }

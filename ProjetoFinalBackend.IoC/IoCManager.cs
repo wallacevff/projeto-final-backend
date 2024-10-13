@@ -20,7 +20,7 @@ public static class IoCManager
 
     public static IServiceCollection AddAllRepositories(this IServiceCollection services)
     {
-        //services.AddScoped<UsuarioRepository>();
+        services.AddScoped<UsuarioRepository>();
 
         return services;
     }

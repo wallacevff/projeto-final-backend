@@ -40,10 +40,10 @@ public class UsuariosController : ControllerBase
     }
 
     [HttpPost("Criar")]
-    public async Task<Usuario?> Criar([FromBody] Usuario usuario)
+    public async Task Criar([FromBody] Professor usuario)
     {
-        var usuarioCriado = await _usuarioRepository.CreateUser(usuario);
+        var usuarioCriado = await _appDbContext.Professores.AddAsync(usuario); //await _usuarioRepository.CreateUser(usuario);
         await _appDbContext.SaveChangesAsync();
-        return usuarioCriado;
+        
     }
 }

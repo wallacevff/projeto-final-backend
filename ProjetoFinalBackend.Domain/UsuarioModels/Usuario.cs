@@ -12,4 +12,9 @@ public abstract class  Usuario : DefaultEntity<Guid>
     public Arquivo? Imagem { get; set; }
     public TipoUsuarioEnum TipoUsuarioCod { get; set; }
     public TipoUsuario? TipoUsuario { get; set; }
+
+    public Usuario()
+    {
+        
+    }
 }
