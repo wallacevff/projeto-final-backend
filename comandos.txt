@@ -4,10 +4,12 @@ dotnet ef -s ProjetoFinalBackend  --project ProjetoFinalBackend.Infra.EntityFram
 PM:
 Add-Migration InitialMigration
 
+Get-Help EntityFramework
 
 Get-Help about_EntityFrameworkCore
 
 **Update Database**
+Update-Database -Project Talonario.Infra.Data -StartupProject Talonario.Web <Nome da Migration>
 
 dotnet ef --project CrachaPus.Infra.EntityFrameworkCore database update
  --project CrachaPus.Infra.EntityFrameworkCore migrations add InitialMigration --context CrachaPlusDbContext
@@ -15,3 +17,8 @@ dotnet ef --project CrachaPus.Infra.EntityFrameworkCore database update
 **Update Database**
 
 dotnet ef --project CrachaPus.Infra.EntityFrameworkCore database update
+
+
+Get-Migration
+
+otnet ef database update --project Talonario.Infra.Data --startup-project Talonario.Web <Nome da Migration>
