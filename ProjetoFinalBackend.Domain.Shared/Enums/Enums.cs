@@ -1,4 +1,4 @@
-﻿namespace ProjetoFinalBackend.Domain.SistemaModels;
+﻿namespace ProjetoFinalBackend.Domain.Shared.Enums;
 
 public enum Modalidade
 {

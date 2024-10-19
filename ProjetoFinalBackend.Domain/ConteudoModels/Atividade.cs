@@ -1,5 +1,5 @@
 ﻿using ProjetoFinalBackend.Domain.CursoModels;
-using ProjetoFinalBackend.Domain.SistemaModels;
+using ProjetoFinalBackend.Domain.Shared.Enums;
 using ProjetoFinalBackend.Domain.SistemaModels.ArquivoModels;
 
 namespace ProjetoFinalBackend.Domain.ConteudoModels;

@@ -1,15 +1,20 @@
 #Add-Migration
 Powershell:
-dotnet ef -s ProjetoFinalBackend  --project ProjetoFinalBackend.Infra.EntityFramework  migrations add InitialMigration
+dotnet ef -StartupProject ProjetoFinalBackend.Api  --project ProjetoFinalBackend.Infra.EntityFramework  migrations add InitialMigration
 PM:
-Add-Migration InitialMigration
+Add-Migration -StartupProject ProjetoFinalBackend.Api -Project ProjetoFinalBackend.Infra.EntityFramework InitialMigration
 
 Get-Help EntityFramework
 
 Get-Help about_EntityFrameworkCore
 
+
+#Remove-Migration
+Remove-Migration -StartupProject ProjetoFinalBackend.Api -Project ProjetoFinalBackend.Infra.EntityFramework
+dotnet ef -s ProjetoFinalBackend.Api  --project ProjetoFinalBackend.Infra.EntityFramework  migrations remove
+
 **Update Database**
-Update-Database -Project Talonario.Infra.Data -StartupProject Talonario.Web <Nome da Migration>
+Update-Database -Project ProjetoFinalBackend.Infra.EntityFramework -StartupProject ProjetoFinalBackend.Api <Nome da Migration>
 
 dotnet ef --project CrachaPus.Infra.EntityFrameworkCore database update
  --project CrachaPus.Infra.EntityFrameworkCore migrations add InitialMigration --context CrachaPlusDbContext
@@ -21,4 +26,4 @@ dotnet ef --project CrachaPus.Infra.EntityFrameworkCore database update
 
 Get-Migration
 
-otnet ef database update --project Talonario.Infra.Data --startup-project Talonario.Web <Nome da Migration>
+dotnet ef database update --project Talonario.Infra.Data --startup-project Talonario.Web <Nome da Migration>

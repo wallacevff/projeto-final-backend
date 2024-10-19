@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ProjetoFinalBackend.Infra.EntityFramework;
+using ProjetoFinalBackend.Application.Services;
+using ProjetoFinalBackend.Infra.CrossCutting.Configurations;
 using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
 using ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
@@ -10,10 +12,20 @@ public static class IoCManager
 {
     #region "Public Methods"
 
-    public static IServiceCollection AddDatabase(this IServiceCollection services)
+    public static IServiceCollection ConfigureByIoC(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddDatabase(configuration);
+        services.AddAutoMap();
+        return services;
+    }
+
+
+    public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configutation)
+    {
+        DbContextConfiguration dbContextConfiguration = new DbContextConfiguration();
+        configutation.GetSection(DbContextConfiguration.ConnectionStrings).Bind(dbContextConfiguration);
         services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlite("Data Source=db.db")
+            options.UseSqlite(dbContextConfiguration.DefaultConnection)
         );
         return services;
     }
@@ -22,6 +34,12 @@ public static class IoCManager
     {
         services.AddScoped<UsuarioRepository>();
 
+        return services;
+    }
+
+    public static IServiceCollection AddAutoMap(this IServiceCollection services)
+    {
+        services.AddAutoMapper(typeof(IApplicationServices));
         return services;
     }
 

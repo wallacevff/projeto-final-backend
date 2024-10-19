@@ -1,16 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjetoFinalBackend.Domain.Shared.Filters;
 using ProjetoFinalBackend.Domain.UsuarioModels;
 using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
 
 namespace ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
-public class UsuarioRepository : DefaultRepository<Usuario>
+public class UsuarioRepository : DefaultRepository<Usuario, UsuarioFilter>
 {
     public UsuarioRepository(AppDbContext context) : base(context) { }
 
     public async Task<Usuario> Login(string usuario, string senha)
     {
-        return await _dbSet
+        return await DbSet
             .Include(u => u.TipoUsuario)
             .ThenInclude(tu => tu!.Navbar)
             .FirstAsync(

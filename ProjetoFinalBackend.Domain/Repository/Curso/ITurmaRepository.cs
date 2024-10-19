@@ -1,10 +1,11 @@
 ﻿using ProjetoFinalBackend.Domain.CursoModels;
-using ProjetoFinalBackend.Domain.SistemaModels;
+using ProjetoFinalBackend.Domain.Shared.Filters;
+using ProjetoFinalBackend.Domain.Shared.Pagination;
 using ProjetoFinalBackend.Domain.UsuarioModels;
 
 namespace ProjetoFinalBackend.Domain.Repository.Curso;
 
-public interface ITurmaRepository : IDefaultRepository<CursoModels.Turma>
+public interface ITurmaRepository : IDefaultRepository<Turma, TurmaFilter>
 {
     public Task<PagedResult<CursoModels.Turma>> GetAllTurmasPagedAsync(int pageNumber, int pageSize,params object[] cursoId);
 

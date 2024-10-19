@@ -15,9 +15,9 @@ public class TurmaEntityMap : IEntityTypeConfiguration<Turma>, IEntityMap
         builder.Property(t => t.Numero);
         builder.Property(t => t.Tamanho);
         builder.Ignore(t => t.QtdAlunos);
-        //builder.HasOne(t => t.Curso)
-        //    .WithMany()
-        //    .HasForeignKey(c => c.CursoId);
+        builder.HasOne(t => t.Curso)
+            .WithMany(c => c.Turmas)
+            .HasForeignKey(c => c.CursoId);
         builder.HasMany(t => t.Atividades)
             .WithOne(a => a.Turma)
             .HasForeignKey(a => new {a.CursoId, a.TurmaId });

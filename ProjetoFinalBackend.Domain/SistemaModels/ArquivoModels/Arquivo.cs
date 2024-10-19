@@ -1,4 +1,4 @@
-﻿using ProjetoFinalBackend.Domain.SistemaModels;
+﻿using ProjetoFinalBackend.Domain.Shared.Enums;
 
 namespace ProjetoFinalBackend.Domain.SistemaModels.ArquivoModels;
 

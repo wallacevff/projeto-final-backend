@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ProjetoFinalBackend.Domain.ConteudoModels;
-using ProjetoFinalBackend.Domain.SistemaModels;
+using ProjetoFinalBackend.Domain.Shared.Enums;
 
 namespace ProjetoFinalBackend.Infra.EntityFramework.EntityMaps;
 

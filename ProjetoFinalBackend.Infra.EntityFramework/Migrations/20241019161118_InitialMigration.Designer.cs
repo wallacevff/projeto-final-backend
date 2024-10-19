@@ -11,8 +11,8 @@ using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
 namespace ProjetoFinalBackend.Infra.EntityFramework.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241016094729_Initial")]
-    partial class Initial
+    [Migration("20241019161118_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

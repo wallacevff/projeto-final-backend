@@ -1,4 +1,5 @@
-﻿using ProjetoFinalBackend.Domain.SistemaModels;
+﻿using ProjetoFinalBackend.Domain.Shared.Enums;
+using ProjetoFinalBackend.Domain.SistemaModels;
 
 namespace ProjetoFinalBackend.Domain.UsuarioModels;
 

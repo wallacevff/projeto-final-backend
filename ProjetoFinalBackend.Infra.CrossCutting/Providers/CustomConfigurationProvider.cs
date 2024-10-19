@@ -26,12 +26,17 @@ public static class CustomConfigurationProvider
     public static IConfiguration GetConfiguration(string environmentName)
     {
         string path;
-        if (environmentName == Environments.Development)
+        switch (environmentName)
         {
-            path = Path.Combine("ConfigurationJsonFiles", "appsettings.Development.json");
-            return new ConfigurationBuilder().AddJsonFile(path).Build();
+            case "Development": 
+                path = Path.Combine("ConfigurationJsonFiles", $"appsettings.{Environments.Development}.json");
+                return new ConfigurationBuilder().AddJsonFile(path).Build();
+            case "Staging":
+                path = Path.Combine("ConfigurationJsonFiles", $"appsettings.{Environments.Staging}.json");
+                return new ConfigurationBuilder().AddJsonFile(path).Build();
+            default:
+                path = Path.Combine("ConfigurationJsonFiles", "appsettings.json");
+                return new ConfigurationBuilder().AddJsonFile(path).Build();
         }
-        path = Path.Combine("ConfigurationJsonFiles", "appsettings.json");
-        return new ConfigurationBuilder().AddJsonFile(path).Build();
     }
 }
