@@ -5,7 +5,7 @@ using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
 
 namespace ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
-public class UsuarioRepository : DefaultRepository<Usuario, UsuarioFilter>
+public class UsuarioRepository : DefaultRepository<Usuario, UsuarioFilter, Guid>
 {
     public UsuarioRepository(AppDbContext context) : base(context) { }
 
@@ -18,8 +18,4 @@ public class UsuarioRepository : DefaultRepository<Usuario, UsuarioFilter>
             u => u.Email == usuario && u.Senha == senha);
     }
 
-    public async Task<Usuario?> CreateUser(Usuario usuario)
-    {
-        return await base.AddAsync(usuario);
-    }
 }

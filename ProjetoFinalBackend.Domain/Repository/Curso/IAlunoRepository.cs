@@ -4,7 +4,7 @@ using ProjetoFinalBackend.Domain.UsuarioModels;
 
 namespace ProjetoFinalBackend.Domain.Repository.Curso;
 
-public interface IAlunoRepository : IDefaultRepository<Aluno, AlunoFilter>
+public interface IAlunoRepository : IDefaultRepository<Aluno, AlunoFilter, Guid>
 {
     public Task<PagedResult<Aluno>> GetAllTurmaAlunoPagedAsync(int pageNumber, int pageSize, params object[] turmaId);
 

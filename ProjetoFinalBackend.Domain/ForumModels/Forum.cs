@@ -31,7 +31,11 @@ public class Forum
         set => _createdAt = value;
     }
 
-    public record Key(Guid TurmaId, Guid ForumId);
+    public class Key(Guid turmaId, Guid forumId)
+    {
+        Guid TurmaId = turmaId;
+        Guid ForumId = forumId;
+    }
 
     public Key GetKey()
     {

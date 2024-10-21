@@ -17,4 +17,26 @@ public class Turma
     public IList<Atividade>? Atividades { get; set; }
     public IList<Forum>? Forums { get; set; } //Dono de Foruns
     public IList<TurmaAluno>? Alunos { get; set; } //Contém Alunos
+
+    public class Key(Guid cursoId, Guid turmaId)
+    {
+        public Guid CursoId { get; set; } = cursoId;
+        public Guid TurmaId { get; set; } = turmaId;
+
+        public override bool Equals(object? obj)
+        {
+            if(obj is not Key key) return false;
+            return CursoId == key.CursoId && TurmaId == key.TurmaId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(CursoId, TurmaId);
+        }
+    }
+
+    public Key GetKey()
+    {
+        return new Key(CursoId, TurmaId);
+    }
 }

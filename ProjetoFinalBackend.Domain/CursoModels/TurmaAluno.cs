@@ -1,4 +1,6 @@
-﻿using ProjetoFinalBackend.Domain.UsuarioModels;
+﻿using ProjetoFinalBackend.Domain.ConteudoModels;
+using ProjetoFinalBackend.Domain.ForumModels;
+using ProjetoFinalBackend.Domain.UsuarioModels;
 
 namespace ProjetoFinalBackend.Domain.CursoModels;
 
@@ -15,4 +17,26 @@ public class TurmaAluno
     public int QuantidadeTarefasRealizadas { get; set; }
     public double PercentualConcluido { get; set; }
 
+    public class Key(Guid cursoId, Guid turmaId, Guid alunoId)
+    {
+        public Guid CursoId { get; set; } = cursoId;
+        public Guid TurmaId { get; set; } = turmaId;
+        public Guid AlunoId { get; set; } = alunoId;
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is not Key key) return false;
+            return CursoId == key.CursoId && TurmaId == key.TurmaId &&
+                   AlunoId == key.AlunoId && AlunoId == key.AlunoId;
+        }
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(CursoId, TurmaId, AlunoId);
+        }
+    }
+
+    public Key GetKey()
+    {
+        return new Key(CursoId, TurmaId, AlunoId);
+    }
 }

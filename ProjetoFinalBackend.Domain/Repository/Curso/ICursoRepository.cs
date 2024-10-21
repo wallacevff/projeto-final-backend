@@ -3,7 +3,7 @@ using ProjetoFinalBackend.Domain.Shared.Pagination;
 
 namespace ProjetoFinalBackend.Domain.Repository.Curso;
 
-public interface ICursoRepository : IDefaultRepository<CursoModels.Curso, CursoFilter>
+public interface ICursoRepository : IDefaultRepository<CursoModels.Curso, CursoFilter, Guid>
 {
     public Task<CursoModels.Curso> GetCursoAsync(Guid cursoId);
     

@@ -1,6 +1,5 @@
 ﻿namespace ProjetoFinalBackend.Application.Contracts;
 
-public interface ApplicationContracts
+public interface IApplicationServiceContracts
 {
-
 }

@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Dtos\Arquivo\" />
     <Folder Include="Dtos\Pagination\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjetoFinalBackend.Domain.Shared\ProjetoFinalBackend.Domain.Shared.csproj" />
   </ItemGroup>
 
 </Project>

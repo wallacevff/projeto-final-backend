@@ -32,7 +32,23 @@ public abstract class Atividade
     public virtual DateTime? DeletedAt { get; set; }
 
 
-    public record Key(Guid AtividadeId, Guid TurmaId);
+    public class Key(Guid turmaId, Guid atividadeId)
+    {
+        public Guid TurmaId { get; set; } = turmaId;
+        public Guid AtividadeId { get; set; } = atividadeId;
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is not Key key) return false;
+            return TurmaId == key.TurmaId &&
+                   AtividadeId == key.AtividadeId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(TurmaId, AtividadeId);
+        }
+    }
 
     public Key GetKey()
     {

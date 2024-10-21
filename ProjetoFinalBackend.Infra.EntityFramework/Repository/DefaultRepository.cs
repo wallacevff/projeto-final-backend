@@ -9,10 +9,10 @@ using System.Reflection;
 using ProjetoFinalBackend.Domain.Repository;
 namespace ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
-public abstract partial class DefaultRepository<TEntity, TFilter>(
+public abstract partial class DefaultRepository<TEntity, TFilter, Tkey>(
     AppDbContext appDbContext
-    ) : IDefaultRepository<TEntity, TFilter>
-    where TEntity : DefaultEntity<Guid>
+    ) : IDefaultRepository<TEntity, TFilter, Tkey>
+    where TEntity : class
     where TFilter : Filter, new()
 {
 
@@ -42,12 +42,19 @@ public abstract partial class DefaultRepository<TEntity, TFilter>(
 
     public Task ChangeTracker()
     {
-        return Task.FromResult(() => Context.ChangeTracker.Clear());
+        Context.ChangeTracker.Clear();
+        return Task.CompletedTask;
     }
 
     public Task Dispose()
     {
-        return Task.FromResult(() => Context.DisposeAsync());
+        return Context.DisposeAsync().AsTask();
+    }
+
+
+    public async Task<TEntity?> GetAsync(Tkey id)
+    {
+        return await DbSet.FindAsync(id);
     }
 
     public virtual async Task<PagedResult<TEntity>> GetAll(TFilter filter)
@@ -64,33 +71,29 @@ public abstract partial class DefaultRepository<TEntity, TFilter>(
         );
     }
 
-
-
-    public async Task<TEntity?> GetAsync(Guid id)
-    {
-        return await DbSet.FirstOrDefaultAsync(d => d.Id == id);
-    }
-
     public Task UpdateAsync(TEntity entity)
     {
-        return Task.FromResult(DbSet.Update(entity));
+        DbSet.Update(entity);
+        return Task.CompletedTask;
     }
 
     protected virtual async Task<PagedResult<TEntity>> GeneratePagedResult(IList<TEntity> entities, TFilter filter)
     {
-        var pageSizeNonZero = filter.PageSize - 1 != 0 ? filter.PageSize - 1 : 1;
         var totalItens = await DbSet.CountAsync();
+        var totalPages = (int)Math.Ceiling(totalItens / (double)(filter.PageSize > 0 ? filter.PageSize : 1));
+
         return new PagedResult<TEntity>
         {
             PageInfo = new PageInfo
             {
                 PageNumber = filter.PageNumber,
                 PageSize = filter.PageSize,
-                TotalPages = totalItens >= filter.PageSize ? totalItens / pageSizeNonZero : 1
+                TotalPages = totalPages
             },
             Dados = entities
         };
     }
+
 
     protected virtual Expression<Func<TEntity, bool>> GetFilters(TFilter filter)
     {
@@ -115,7 +118,7 @@ public abstract partial class DefaultRepository<TEntity, TFilter>(
             if (filterValue != null)
             {
                 // Verifica se a entidade TEntity tem a mesma propriedade
-                PropertyInfo entityProperty = typeof(TEntity).GetProperty(filterProperty.Name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                PropertyInfo? entityProperty = typeof(TEntity).GetProperty(filterProperty.Name, BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
 
                 if (entityProperty != null)
                 {
@@ -146,6 +149,20 @@ public abstract partial class DefaultRepository<TEntity, TFilter>(
                         );
                         predicate = predicate.And(Expression.Lambda<Func<TEntity, bool>>(body, parameter));
                     }
+                    // Se for do tipo DateTime ou DateTime?, aplicar intervalos (From e To)
+                    else if (entityProperty.PropertyType == typeof(DateTime) || entityProperty.PropertyType == typeof(DateTime?))
+                    {
+                        if (filterProperty.Name.EndsWith("From"))
+                        {
+                            var body = Expression.GreaterThanOrEqual(property, constant);
+                            predicate = predicate.And(Expression.Lambda<Func<TEntity, bool>>(body, parameter));
+                        }
+                        else if (filterProperty.Name.EndsWith("To"))
+                        {
+                            var body = Expression.LessThanOrEqual(property, constant);
+                            predicate = predicate.And(Expression.Lambda<Func<TEntity, bool>>(body, parameter));
+                        }
+                    }
                     else
                     {
                         // Caso comum: compara diretamente com ==
@@ -158,6 +175,7 @@ public abstract partial class DefaultRepository<TEntity, TFilter>(
 
         return predicate;
     }
+
 
 
 
