@@ -57,11 +57,23 @@ public abstract partial class DefaultRepository<TEntity, TFilter, Tkey>(
         return await DbSet.FindAsync(id);
     }
 
-    public virtual async Task<PagedResult<TEntity>> GetAll(TFilter filter)
+    protected virtual IEnumerable<Expression<Func<TEntity, object>>> GetIncludes()
     {
-        var result = await
-        DbSet
-            .Where(GetFilters(filter))
+        return Enumerable.Empty<Expression<Func<TEntity, object>>>();
+    }
+
+    protected virtual IQueryable<TEntity> ApplyIncludes(IQueryable<TEntity> query)
+    {
+
+        return query;
+    }
+
+    public virtual async Task<PagedResult<TEntity>> GetAllAsync(TFilter filter)
+    {
+        var query = DbSet.AsQueryable();
+        query = ApplyIncludes(query);
+        query = query.Where(GetFilters(filter));
+        var result = await query
             .Skip((filter.PageNumber - 1) * filter.PageSize)
             .Take(filter.PageSize).ToListAsync()
             ;

@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProjetoFinalBackend.Domain.Repository;
 using ProjetoFinalBackend.Domain.Shared.Filters;
 using ProjetoFinalBackend.Domain.UsuarioModels;
 using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
 
 namespace ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
-public class UsuarioRepository : DefaultRepository<Usuario, UsuarioFilter, Guid>
+public class UsuarioRepository : DefaultRepository<Usuario, UsuarioFilter, Guid>, IUsuarioRepository
 {
     public UsuarioRepository(AppDbContext context) : base(context) { }
 

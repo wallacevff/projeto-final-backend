@@ -8,7 +8,7 @@ public interface IDefaultRepository<TEntity, TFilter, TKey>
     where TFilter : Filter, new()
 {
     public Task<TEntity?> GetAsync(TKey id);  // Alterado para aceitar uma chave do tipo TKey
-    public Task<PagedResult<TEntity>> GetAll(TFilter filter);
+    public Task<PagedResult<TEntity>> GetAllAsync(TFilter filter);
     public Task<TEntity> AddAsync(TEntity entity);
     public Task AddRangeAync(IList<TEntity> entities);
     public Task UpdateAsync(TEntity entity);

@@ -1,8 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProjetoFinalBackend.Application.Contracts;
 using ProjetoFinalBackend.Application.Services;
+using ProjetoFinalBackend.Domain;
+using ProjetoFinalBackend.Domain.Repository;
 using ProjetoFinalBackend.Infra.CrossCutting.Configurations;
+using ProjetoFinalBackend.Infra.EntityFramework;
 using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
 using ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
@@ -16,6 +20,8 @@ public static class IoCManager
     {
         services.AddDatabase(configuration);
         services.AddAutoMap();
+        services.AddAllRepositories();
+        services.AddAllServices();
         return services;
     }
 
@@ -32,7 +38,14 @@ public static class IoCManager
 
     public static IServiceCollection AddAllRepositories(this IServiceCollection services)
     {
-        services.AddScoped<UsuarioRepository>();
+        services.AddAllServicesByTypes(typeof(IDomainRepository), typeof(IProjetoFinalInfraEntityFramework));
+
+        return services;
+    }
+
+    public static IServiceCollection AddAllServices(this IServiceCollection services)
+    {
+        services.AddAllServicesByTypes(typeof(IApplicationServiceContracts), typeof(IApplicationServices));
 
         return services;
     }
@@ -86,6 +99,7 @@ public static class IoCManager
     {
         foreach (Type implementedType in implementedTypes)
         {
+            Console.WriteLine($"Serviços adicionados: {interfaceType} - {implementedType}");
             services.AddScoped(interfaceType, implementedType);
         }
         return services;

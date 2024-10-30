@@ -11,5 +11,4 @@ public class UsuarioCadastroDto
     public Guid? ImagemId { get; set; }
     public ImagemDto? Imagem { get; set; }
     public TipoUsuarioEnum TipoUsuarioCod { get; set; }
-    public TipoUsuarioDto? TipoUsuario { get; set; }
 }

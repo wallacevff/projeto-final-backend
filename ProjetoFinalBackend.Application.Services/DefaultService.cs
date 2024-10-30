@@ -19,4 +19,19 @@ public class DefaultService<TDto, TCadastroDto, TFilter, TKey> : IDefaultService
     {
         throw new NotImplementedException();
     }
+
+    public Task<TDto> GetByIdAsync(TKey id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task UpdateAsync(TDto dto)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<TDto> DeleteAsync(TKey id)
+    {
+        throw new NotImplementedException();
+    }
 }
