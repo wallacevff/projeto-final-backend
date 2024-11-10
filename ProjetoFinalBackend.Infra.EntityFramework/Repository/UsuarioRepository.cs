@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ProjetoFinalBackend.Domain.Repository;
+using ProjetoFinalBackend.Domain.Repository.Usuario;
 using ProjetoFinalBackend.Domain.Shared.Filters;
 using ProjetoFinalBackend.Domain.UsuarioModels;
 using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
@@ -19,4 +19,8 @@ public class UsuarioRepository : DefaultRepository<Usuario, UsuarioFilter, Guid>
             u => u.Email == usuario && u.Senha == senha);
     }
 
+    protected override IQueryable<Usuario> ApplyOrderBy(IQueryable<Usuario> query)
+    {
+        return query.OrderBy(u => u.Id);
+    }
 }

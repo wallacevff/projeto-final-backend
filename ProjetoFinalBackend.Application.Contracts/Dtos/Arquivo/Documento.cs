@@ -1,6 +1,6 @@
 ﻿namespace ProjetoFinalBackend.Application.Contracts.Dtos.Arquivo;
 
-public class ImagemDto : ArquivoDto
+public class DocumentoDto : ArquivoDto
 {
-    
+
 }

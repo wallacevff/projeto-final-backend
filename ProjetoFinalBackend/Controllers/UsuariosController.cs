@@ -1,14 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using ProjetoFinalBackend.Application.Contracts.Dtos.Pagination;
 using ProjetoFinalBackend.Application.Contracts.Dtos.Usuario;
 using ProjetoFinalBackend.Application.Contracts.Services;
-using ProjetoFinalBackend.Domain.CursoModels;
 using ProjetoFinalBackend.Domain.Shared.Filters;
-using ProjetoFinalBackend.Domain.SistemaModels;
 using ProjetoFinalBackend.Domain.UsuarioModels;
 using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
-using ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
 namespace ProjetoFinalBackend.Api.Controllers;
 [ApiController]
@@ -20,17 +16,44 @@ public class UsuariosController : ControllerBase
     private readonly AppDbContext _appDbContext;
     private readonly IUsuarioService _usuarioService;
     private readonly ITipoUsuarioService _tipoUsuarioService;
+    private readonly IProfessorService _professorService;
 
     public UsuariosController(ILogger<UsuariosController> logger
     , AppDbContext context, IUsuarioService usuarioService
     , ITipoUsuarioService tipoUsuarioService
+    , IProfessorService professorService
+
     )
     {
         _logger = logger;
         _appDbContext = context;
         _usuarioService = usuarioService;
         _tipoUsuarioService = tipoUsuarioService;
+        _professorService = professorService;
     }
+
+    [HttpGet("Professores")]
+    public async Task<PagedResultDto<ProfessorDto>> Getusuarios([FromQuery] ProfessorFilter filter)
+    {
+        return await _professorService.GetAllAsync(filter);
+    }
+
+
+
+
+    [HttpGet("Usuarios")]
+    public async Task<PagedResultDto<UsuarioDto>> Getusuarios([FromQuery] UsuarioFilter filter)
+    {
+        return await _usuarioService.GetAllAsync(filter);
+    }
+
+    [HttpPost("Usuarios")]
+    public async Task CriarUsuario(UsuarioCadastroDto usuario)
+    {
+       await _usuarioService.AddAsync(usuario).ConfigureAwait(false);
+    }
+
+
 
     [HttpGet("TipoUsuarios")]
     public async Task<PagedResultDto<TipoUsuarioDto>> GetTipoUsuarios([FromQuery] TipoUsuarioFilter filter)

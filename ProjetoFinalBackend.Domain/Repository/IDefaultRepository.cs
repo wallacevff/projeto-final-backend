@@ -12,6 +12,7 @@ public interface IDefaultRepository<TEntity, TFilter, TKey>
     public Task<TEntity> AddAsync(TEntity entity);
     public Task AddRangeAync(IList<TEntity> entities);
     public Task UpdateAsync(TEntity entity);
+    public Task<bool> HasAnyAsync();
     public Task<TEntity> DeleteAsync(TEntity entity);
     public Task SaveChangesAsync();
     public Task ChangeTracker();

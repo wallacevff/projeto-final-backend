@@ -3,12 +3,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjetoFinalBackend.Application.Contracts;
 using ProjetoFinalBackend.Application.Services;
-using ProjetoFinalBackend.Domain;
+using ProjetoFinalBackend.Application.Services.Seeders;
 using ProjetoFinalBackend.Domain.Repository;
 using ProjetoFinalBackend.Infra.CrossCutting.Configurations;
 using ProjetoFinalBackend.Infra.EntityFramework;
 using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
-using ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
 namespace ProjetoFinalBackend.Infra.IoC;
 
@@ -22,6 +21,7 @@ public static class IoCManager
         services.AddAutoMap();
         services.AddAllRepositories();
         services.AddAllServices();
+        services.AddSeeders();
         return services;
     }
 
@@ -55,6 +55,13 @@ public static class IoCManager
         services.AddAutoMapper(typeof(IApplicationServices));
         return services;
     }
+
+    public static IServiceCollection AddSeeders(this IServiceCollection service)
+    {
+        service.AddScoped<TipoUsuarioSeeder>();
+        return service;
+    }
+
 
     #endregion
 
@@ -99,7 +106,7 @@ public static class IoCManager
     {
         foreach (Type implementedType in implementedTypes)
         {
-            Console.WriteLine($"Serviços adicionados: {interfaceType} - {implementedType}");
+            Console.WriteLine($"Serviço adicionados: <{interfaceType.Name}, {implementedType.Name}>");
             services.AddScoped(interfaceType, implementedType);
         }
         return services;

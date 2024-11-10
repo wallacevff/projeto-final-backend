@@ -1,4 +1,6 @@
-﻿namespace ProjetoFinalBackend.Api.Extensions;
+﻿using ProjetoFinalBackend.Application.Services.Seeders;
+
+namespace ProjetoFinalBackend.Api.Extensions;
 
 public static class WebApplicationExtensions
 {
@@ -27,6 +29,16 @@ public static class WebApplicationExtensions
             .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader());
+        return app;
+    }
+
+    public static WebApplication ExecuteSeeders(this WebApplication app)
+    {
+        using (var scope = app.Services.CreateScope())
+        {
+            var seeder = scope.ServiceProvider.GetRequiredService<TipoUsuarioSeeder>();
+            seeder.Seed().ConfigureAwait(false);
+        }
         return app;
     }
 

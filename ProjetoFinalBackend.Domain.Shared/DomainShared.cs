@@ -1,6 +1,6 @@
 ﻿namespace ProjetoFinalBackend.Domain.Shared;
 
-public interface DomainShared
+public interface IDomainShared
 {
 
 }

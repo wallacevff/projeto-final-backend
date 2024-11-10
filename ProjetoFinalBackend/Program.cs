@@ -12,4 +12,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 app.UseSwaggerAllEnvs();
+app.ExecuteSeeders();
 app.Run();

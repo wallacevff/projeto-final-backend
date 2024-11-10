@@ -9,8 +9,10 @@ where TCadastroDto : class
 where TFilter : Filter
 {
     public Task<TDto> AddAsync(TCadastroDto dto);
+    public Task AddRangeAsync(IList<TCadastroDto> dto);
     public Task<PagedResultDto<TDto>> GetAllAsync(TFilter filter);
     public Task<TDto> GetByIdAsync(Tkey id);
     public Task UpdateAsync(TDto dto);
     public Task<TDto> DeleteAsync(Tkey id);
+    public Task<bool> HasAnyAsync();
 }

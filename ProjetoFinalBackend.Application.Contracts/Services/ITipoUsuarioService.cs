@@ -7,6 +7,5 @@ namespace ProjetoFinalBackend.Application.Contracts.Services;
 public interface ITipoUsuarioService : IDefaultService
     <TipoUsuarioDto, TipoUsuarioCadastroDto,TipoUsuarioFilter, TipoUsuarioEnum>, IApplicationServiceContracts
 {
-    
 }
 

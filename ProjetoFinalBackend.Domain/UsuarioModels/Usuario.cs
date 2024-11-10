@@ -18,3 +18,5 @@ public abstract class  Usuario : DefaultEntity<Guid>
         
     }
 }
+
+public class UsuarioModel : Usuario{}
