@@ -11,6 +11,8 @@ public class UsuarioEntityMap : IEntityTypeConfiguration<Usuario>, IEntityMap
     {
         builder.ToTable(nameof(Usuario));
         builder.HasKey(u => u.Id);
+        builder.HasAlternateKey(u => u.Email);
+        builder.HasIndex(u => new { u.Email, u.Senha });
         builder.HasDiscriminator(u => u.TipoUsuarioCod)
             .HasValue<Professor>(TipoUsuarioEnum.Professor)
             .HasValue<Aluno>(TipoUsuarioEnum.Aluno);

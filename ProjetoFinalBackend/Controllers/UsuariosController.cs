@@ -53,6 +53,11 @@ public class UsuariosController : ControllerBase
        await _usuarioService.AddAsync(usuario).ConfigureAwait(false);
     }
 
+    [HttpPost("Login")]
+    public async Task<bool> Login([FromBody] LoginDto usuario)
+    {
+        return await _usuarioService.Login(usuario.Email, usuario.Password).ConfigureAwait(false);
+    }
 
 
     [HttpGet("TipoUsuarios")]

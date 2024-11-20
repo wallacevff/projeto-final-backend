@@ -9,8 +9,8 @@
   <ItemGroup>
     <Folder Include="Automap\" />
     <Folder Include="Forum\" />
+    <Folder Include="Curso\" />
     <Folder Include="Seeders\" />
-    <Folder Include="Turmas\" />
   </ItemGroup>
 
   <ItemGroup>

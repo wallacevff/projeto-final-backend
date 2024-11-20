@@ -12,13 +12,14 @@ public class ProfessorRepository :
     public ProfessorRepository(AppDbContext context) : base(context) { }
 
 
+    protected override IQueryable<Professor> ApplyIncludes(IQueryable<Professor> query)
+    {
+        return base.ApplyIncludes(query)
+            .Include(q => q.TipoUsuario!.Navbar);
+    }
+
     protected override IQueryable<Professor> ApplyOrderBy(IQueryable<Professor> query)
     {
         return query.OrderBy(u => u.Nome);
-    }
-
-    protected override IQueryable<Professor> ApplyIncludes(IQueryable<Professor> query)
-    {
-        return query.Include(p => p.Cursos);
     }
 }

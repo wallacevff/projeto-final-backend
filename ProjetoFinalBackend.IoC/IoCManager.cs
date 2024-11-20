@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using ProjetoFinalBackend.Application.Contracts;
 using ProjetoFinalBackend.Application.Services;
 using ProjetoFinalBackend.Application.Services.Seeders;
@@ -104,9 +105,10 @@ public static class IoCManager
         Type interfaceType,
         IEnumerable<Type> implementedTypes)
     {
+        Console.ForegroundColor = ConsoleColor.White;
         foreach (Type implementedType in implementedTypes)
         {
-            Console.WriteLine($"Serviço adicionados: <{interfaceType.Name}, {implementedType.Name}>");
+            Console.WriteLine($"Serviço adicionado: <{interfaceType.Name}, {implementedType.Name}>");
             services.AddScoped(interfaceType, implementedType);
         }
         return services;

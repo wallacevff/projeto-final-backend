@@ -38,26 +38,28 @@ public abstract class DefaultService<TEntity, TDto, TCadastroDto, TFilter, TKey>
 
     public virtual async Task<TDto> GetByIdAsync(TKey id)
     {
-        var foundEntity = await repository.GetAsync(id);
+        var foundEntity = await repository.GetByIdAsync(id);
         if (foundEntity is null)
             throw new ArgumentNullException("Entidade não encontrada");
         return mapper.MapFrom<TDto>(foundEntity);
     }
 
-    public async Task UpdateAsync(TDto dto)
+    public async Task UpdateAsync(TCadastroDto dto, TKey id)
     {
-        PropertyInfo? props = (dto.GetType()).GetProperty("Id");
-        TEntity? foundEntity = await repository.GetAsync((TKey)props?.GetValue(dto)!);
+        TEntity? foundEntity = await repository.FindAsync(id);
         if (foundEntity is null)
             throw new ArgumentNullException("Entidade não encontrada");
         mapper.MapTo(dto, foundEntity);
+        PropertyInfo? propertyInfo = foundEntity.GetType().GetProperty("UpdatedAt");
+        if (propertyInfo is not null)
+            propertyInfo.SetValue(foundEntity, DateTime.Now);
         await repository.UpdateAsync(foundEntity);
         await repository.SaveChangesAsync();
     }
 
-    public async Task<TDto> DeleteAsync(TKey id)
+    public virtual async Task<TDto> DeleteAsync(TKey id)
     {
-        TEntity? foundEntity = await repository.GetAsync(id);
+        TEntity? foundEntity = await repository.FindAsync(id);
         if (foundEntity is null)
             throw new ArgumentNullException("Entidade não encontrada");
         var deleted = await repository.DeleteAsync(foundEntity);
@@ -65,7 +67,7 @@ public abstract class DefaultService<TEntity, TDto, TCadastroDto, TFilter, TKey>
         return mapper.MapFrom<TDto>(deleted);
     }
 
-    public Task<bool> HasAnyAsync()
+    public virtual Task<bool> HasAnyAsync()
     {
         return repository.HasAnyAsync();
     }

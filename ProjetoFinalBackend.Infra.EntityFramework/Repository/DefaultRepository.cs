@@ -1,12 +1,12 @@
-﻿using LinqKit;
+﻿using System.Collections.Immutable;
+using LinqKit;
 using Microsoft.EntityFrameworkCore;
-using ProjetoFinalBackend.Domain;
+using ProjetoFinalBackend.Domain.Repository;
 using ProjetoFinalBackend.Domain.Shared.Filters;
 using ProjetoFinalBackend.Domain.Shared.Pagination;
 using ProjetoFinalBackend.Infra.EntityFramework.Contexts;
 using System.Linq.Expressions;
 using System.Reflection;
-using ProjetoFinalBackend.Domain.Repository;
 namespace ProjetoFinalBackend.Infra.EntityFramework.Repository;
 
 public abstract partial class DefaultRepository<TEntity, TFilter, Tkey>(
@@ -30,9 +30,11 @@ public abstract partial class DefaultRepository<TEntity, TFilter, Tkey>(
         await DbSet.AddRangeAsync(entities);
     }
 
-    public Task<bool> HasAnyAsync()
+    public virtual Task<bool> HasAnyAsync(Func<TEntity, bool>? predicate = null)
     {
-        return DbSet.AnyAsync();
+        if(predicate is null)
+            return DbSet.AnyAsync();
+        return Task.FromResult(DbSet.Any(predicate));
     }
 
     public virtual async Task<TEntity> DeleteAsync(TEntity entity)
@@ -45,7 +47,7 @@ public abstract partial class DefaultRepository<TEntity, TFilter, Tkey>(
         await Context.SaveChangesAsync();
     }
 
-    public Task ChangeTracker()
+    public virtual Task ChangeTracker()
     {
         Context.ChangeTracker.Clear();
         return Task.CompletedTask;
@@ -57,9 +59,26 @@ public abstract partial class DefaultRepository<TEntity, TFilter, Tkey>(
     }
 
 
-    public async Task<TEntity?> GetAsync(Tkey id)
+    public virtual async Task<TEntity?> FindAsync(Tkey id)
     {
-        return await DbSet.FindAsync(id);
+        IList<PropertyInfo> properties = id!.GetType().GetProperties();
+        IList<object> propsObj = new List<object>();
+        properties.ForEach(p =>
+        {
+            propsObj.Add(p.GetValue(id)!);
+        });
+        var arrayOfKeys = propsObj.ToArray();
+        return await DbSet.FindAsync(arrayOfKeys);
+    }
+
+    public virtual Task<TEntity?> GetByIdAsync(Tkey id)
+    {
+        var query = ApplyIncludes(DbSet);
+        IList<PropertyInfo> properties = id!.GetType().GetProperties();
+        var predicate = GetPredicateUsingKey(properties, id);
+
+        return query
+            .FirstOrDefaultAsync(predicate);
     }
 
     protected virtual IEnumerable<Expression<Func<TEntity, object>>> GetIncludes()
@@ -69,13 +88,11 @@ public abstract partial class DefaultRepository<TEntity, TFilter, Tkey>(
 
     protected virtual IQueryable<TEntity> ApplyIncludes(IQueryable<TEntity> query)
     {
-
         return query;
     }
 
     protected virtual IQueryable<TEntity> ApplyOrderBy(IQueryable<TEntity> query)
     {
-
         return query;
     }
 
@@ -120,7 +137,20 @@ public abstract partial class DefaultRepository<TEntity, TFilter, Tkey>(
     }
 
 
-    
+    private Expression<Func<TEntity, bool>> GetPredicateUsingKey(IList<PropertyInfo> properties, Tkey id)
+    {
+        var predicate = PredicateBuilder.New<TEntity>(true);
+        foreach (var property in properties)
+        {
+            var param = Expression.Parameter(typeof(TEntity), "p");
+            var entityProperty = Expression.Property(param, property.Name);
+            var constantValue = Expression.Constant(property.GetValue(id));
+            var body = Expression.Equal(entityProperty, constantValue);
+            predicate.And(Expression.Lambda<Func<TEntity, bool>>(body, param));
+        }
+
+        return predicate;
+    }
 
 
 

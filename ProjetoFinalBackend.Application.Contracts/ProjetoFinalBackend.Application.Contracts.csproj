@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\Curso\" />
     <Folder Include="Dtos\Pagination\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ProjetoFinalBackend.Domain.Shared\ProjetoFinalBackend.Domain.Shared.csproj" />
+    <ProjectReference Include="..\ProjetoFinalBackend.Domain\ProjetoFinalBackend.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -36,6 +36,7 @@ public abstract partial class DefaultRepository<TEntity, TFilter, Tkey>
 
                 if (entityProperty != null)
                 {
+                  
                     // Cria a expressão para comparar a propriedade do TEntity com o valor do filtro
                     var parameter = Expression.Parameter(typeof(TEntity), "p");
                     var property = Expression.Property(parameter, entityProperty.Name); // Propriedade de TEntity

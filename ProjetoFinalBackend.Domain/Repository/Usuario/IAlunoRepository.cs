@@ -2,7 +2,7 @@
 using ProjetoFinalBackend.Domain.Shared.Pagination;
 using ProjetoFinalBackend.Domain.UsuarioModels;
 
-namespace ProjetoFinalBackend.Domain.Repository.Curso;
+namespace ProjetoFinalBackend.Domain.Repository.Usuario;
 
 public interface IAlunoRepository : IDefaultRepository<Aluno, AlunoFilter, Guid>
 {

@@ -10,17 +10,22 @@ public class UsuarioRepository : DefaultRepository<Usuario, UsuarioFilter, Guid>
 {
     public UsuarioRepository(AppDbContext context) : base(context) { }
 
-    public async Task<Usuario> Login(string usuario, string senha)
+    public async Task<Usuario?> Login(string usuario, string senha)
     {
         return await DbSet
             .Include(u => u.TipoUsuario)
             .ThenInclude(tu => tu!.Navbar)
-            .FirstAsync(
+            .FirstOrDefaultAsync(
             u => u.Email == usuario && u.Senha == senha);
     }
 
     protected override IQueryable<Usuario> ApplyOrderBy(IQueryable<Usuario> query)
     {
         return query.OrderBy(u => u.Id);
+    }
+
+    protected override IQueryable<Usuario> ApplyIncludes(IQueryable<Usuario> query)
+    {
+        return query.Include(u => u.TipoUsuario);
     }
 }

@@ -8,7 +8,6 @@ using ProjetoFinalBackend.Domain.Shared.Enums;
 using ProjetoFinalBackend.Domain.Shared.Pagination;
 using ProjetoFinalBackend.Domain.SistemaModels;
 using ProjetoFinalBackend.Domain.UsuarioModels;
-using ProjetoFinalBackend.Infra.EntityFramework.EntityMaps;
 
 namespace ProjetoFinalBackend.Application.Services.Automap;
 
@@ -29,8 +28,8 @@ public partial class AutomapProfile : Profile
                 : context.Mapper.Map<Aluno>(src)
             );
 
-        CreateMap<Curso, CursoDto>().ReverseMap();
-        CreateMap<Curso, CursoCadastroDto>().ReverseMap();
+        CreateMap<Domain.CursoModels.Curso, CursoDto>().ReverseMap();
+        CreateMap<Domain.CursoModels.Curso, CursoCadastroDto>().ReverseMap();
 
         CreateMap<UsuarioDto, Domain.UsuarioModels.Usuario>()
            
@@ -43,5 +42,9 @@ public partial class AutomapProfile : Profile
         CreateMap<TipoUsuarioCadastroDto, TipoUsuario>().ReverseMap();
         CreateMap<NavbarItemCadastroDto, NavbarItem>().ReverseMap();
         CreateMap<NavbarItemDto, NavbarItem>().ReverseMap();
+        CreateMap<TurmaDto, Turma>().ReverseMap();
+        CreateMap<TurmaCadastroDto, Turma>().ReverseMap();
+        CreateMap<TurmaAlunoCadastroDto, TurmaAluno>().ReverseMap();
+        CreateMap<TurmaAlunoDto, TurmaAluno>().ReverseMap();
     }
 }

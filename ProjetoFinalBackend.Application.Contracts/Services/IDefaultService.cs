@@ -12,7 +12,7 @@ where TFilter : Filter
     public Task AddRangeAsync(IList<TCadastroDto> dto);
     public Task<PagedResultDto<TDto>> GetAllAsync(TFilter filter);
     public Task<TDto> GetByIdAsync(Tkey id);
-    public Task UpdateAsync(TDto dto);
+    public Task UpdateAsync(TCadastroDto dto, Tkey id);
     public Task<TDto> DeleteAsync(Tkey id);
     public Task<bool> HasAnyAsync();
 }
