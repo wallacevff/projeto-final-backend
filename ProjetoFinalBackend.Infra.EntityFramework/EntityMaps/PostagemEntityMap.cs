@@ -28,7 +28,7 @@ public class PostagemEntityMap : IEntityTypeConfiguration<Postagem>, IEntityMap
         builder.Property(p => p.CreatedAt);
 
         builder.HasOne(p => p.Forum).WithMany(f => f.Postagens)
-            .HasForeignKey(p => new {p.CursoId, p.TurmaId, p.ForumId});
+            .HasForeignKey(p => new { p.CursoId, p.TurmaId, p.ForumId });
 
         builder.HasOne(p => p.PostagemPrincipal).WithMany(p => p.Respostas)
             .HasForeignKey(p => new { p.PostagemPrincipalCursoId, p.PostagemPrincipalTurmaId, p.PostagemPrincipalForumId, p.PostagemPrincipalPostagemId });

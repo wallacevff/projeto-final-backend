@@ -10,4 +10,8 @@
     <ProjectReference Include="..\ProjetoFinalBackend.Domain.Shared\ProjetoFinalBackend.Domain.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\Atividade\" />
+  </ItemGroup>
+
 </Project>

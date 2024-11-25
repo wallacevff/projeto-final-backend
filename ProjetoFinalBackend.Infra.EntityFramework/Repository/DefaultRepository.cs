@@ -32,7 +32,7 @@ public abstract partial class DefaultRepository<TEntity, TFilter, Tkey>(
 
     public virtual Task<bool> HasAnyAsync(Func<TEntity, bool>? predicate = null)
     {
-        if(predicate is null)
+        if (predicate is null)
             return DbSet.AnyAsync();
         return Task.FromResult(DbSet.Any(predicate));
     }
